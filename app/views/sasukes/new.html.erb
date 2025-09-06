@@ -1,0 +1,22 @@
+<h3>新規投稿ページ</h3>
+<%= form_for @sasuke do |f| %>
+
+  <div class="field">
+    <%= f.label :活動のタイトル %>
+    <%= f.text_field :title, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :写真 %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :活動の説明  %>
+    <%= f.text_area :about, :size => "30x2" %>
+  </div>
+
+  <%= f.submit "投稿する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", sasukes_path %>

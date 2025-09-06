@@ -1,0 +1,12 @@
+<h3>活動内容詳細</h3>
+<div class="content">
+  <p><%= @content.about %></p>
+  <p><%= @content.created_at %></p>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <%= link_to "編集する", edit_sasuke_path(@content.id) %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "コンテンツ一覧に戻る", sasukes_path %>

@@ -1,0 +1,6 @@
+<%= form_for @content do |f| %>
+  <%= f.label :about %>
+  <%= f.text_field :about, :size => 140 %> 
+  <%= f.submit "編集する" %>
+  <%= link_to "戻る", sasukes_path %>
+<% end %>

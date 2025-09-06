@@ -1,0 +1,31 @@
+<h3>活動内容</h3>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to "新規投稿へ", new_sasuke_path %>
+  <% end %>
+<% end %>
+<div class="activities-container">
+  <% @sasukes.each do |t| %>
+    <div class="activity">
+      <%= t.user.email %>
+      <%= t.title %>
+      <% if t.image.attached? %>
+          <%= image_tag t.image, size: '250x200'%>
+      <% end %>
+      <%= t.about %>
+      <%= link_to "詳細へ", sasuke_path(t.id) %>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <%= link_to "編集する", edit_sasuke_path(t.id) %>
+          <%= button_to "削除する", sasuke_path(t.id), method: :delete %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+ <% if user_signed_in? %>
+   <% if current_user.admin? %>
+     <%= link_to "秘密のページへ", users_path %>
+   <% end %>
+ <% end %>
