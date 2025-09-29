@@ -35,6 +35,22 @@ def update
     end
 end
 
+before_action :authenticate_user!
+
+def join
+    @schedule = Schedule.find(params[:id])
+    unless @schedule.users.include?(current_user)
+        @schedule.users << current_user
+    end
+    redirect_to schedules_path, notice: "参加登録しました！"
+end
+
+def leave
+    @schedule = Schedule.find(params[:id])
+    @schedule.users.delete(current_user)
+    redirect_to schedules_path, notice: "参加をキャンセルしました。"
+end
+
 private
 
 def schedule_parameter

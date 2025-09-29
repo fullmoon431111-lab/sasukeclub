@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @schedule.title %></h2>
+<p>開催日時: <%= @schedule.start_time.strftime("%Y-%m-%d %H:%M") %></p>
 
-<p>
-  <strong>タイトル</strong>
-  <%= @schedule.title %>
-</p>
+<h3>参加者一覧</h3>
+<ul>
+  <% @schedule.users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+</ul>
 
-<p>
-  <strong>時間</strong>
-  <%= @schedule.start_time.strftime("%Y-%m-%d %H:%M") %>
-</p>
+<% if user_signed_in? %>
+  <% if @schedule.users.include?(current_user) %>
+    <%= button_to "参加キャンセル", leave_schedule_path(@schedule), method: :delete %>
+  <% else %>
+    <%= button_to "参加する", join_schedule_path(@schedule), method: :post %>
+  <% end %>
+<% end %>
 
-<p>
-  <strong>内容</strong>
-  <%= @schedule.about %>
-</p>
-
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<%= link_to 'Back', schedules_path %>
+<%= link_to "一覧へ戻る", schedules_path %>

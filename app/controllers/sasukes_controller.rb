@@ -23,6 +23,7 @@ class SasukesController < ApplicationController
     
     def show
         @content = Sasuke.find(params[:id])
+        @sasukes = Sasuke.all
     end
 
     def edit
@@ -48,8 +49,9 @@ class SasukesController < ApplicationController
     end
     
     def index
-        @sasukes = Sasuke.all
+        @sasukes = Sasuke.order(created_at: :asc)   # 古い投稿が先に表示
     end
+
 
     def manager
     end

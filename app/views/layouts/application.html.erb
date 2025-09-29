@@ -3,31 +3,35 @@
   <head>
     <title><%= content_for(:title) || "Sasukeclub" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
- <header>
-  <h1>東大SASUKEサークル</h1>
- </header>
- <% if user_signed_in? %>
-    <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
- <% else %>
-    <%= link_to "ログイン", new_user_path %>
- <% end %>
-     <main>
-  <%= yield %>
- </main>
-</body>
+    <header>
+      <div class="header-left">
+        <%= image_tag "logo.png", alt: "東大SASUKEサークルロゴ", class: "logo" %>
+        <div class="title-text">
+          <h1>東大SASUKEサークル</h1>
+          <div class="slogan">〜NO WALL TOO HIGH FOR UT〜</div>
+        </div>
+      </div>
+      
+      <% if user_signed_in? %>
+        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "ログイン", new_user_path, class: "login-link" %>
+      <% end %>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      &copy; <%= Time.current.year %> 東大SASUKEサークル
+    </footer>
+  </body>
 </html>

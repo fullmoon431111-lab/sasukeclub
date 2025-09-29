@@ -16,11 +16,19 @@ Rails.application.routes.draw do
   patch 'sasukes/:id' => 'sasukes#update'
   delete 'sasukes/:id' => 'sasukes#destroy'
   get 'sasukes/:id/edit' => 'sasukes#edit', as:'edit_content'
+  get "schedules/new"=>"schedules#new"
+  get "schedules/show"=>"schedules#show"
+  get "schedules/:id"=>"schedules#index"
+  
 
   get 'users' =>'users#index' 
 
   resources :sasukes
-  resources :schedules
+  resources :schedules do
+    post 'join', on: :member
+    delete 'leave', on: :member
+  end
+
   resources :users
   root "sasukes#index"
 end

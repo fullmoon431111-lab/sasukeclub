@@ -1,6 +1,20 @@
-<%= form_for @content do |f| %>
+<%= form_for @content, html: { multipart: true } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, size: 140 %>
+  <br>
+
   <%= f.label :about %>
-  <%= f.text_field :about, :size => 140 %> 
+  <%= f.text_field :about, size: 140 %>
+  <br>
+
+  <%= f.label :image, "画像" %>
+  <%= f.file_field :image %>
+  <% if @content.image.attached? %>
+    <p>現在の画像：</p>
+    <%= image_tag @content.image.variant(resize_to_limit: [200, 200]).processed %>
+  <% end %>
+
+  <br>
   <%= f.submit "編集する" %>
   <%= link_to "戻る", sasukes_path %>
 <% end %>

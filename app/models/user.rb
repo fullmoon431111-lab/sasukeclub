@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :contents
+  has_many :schedule_users
+  has_many :schedules, through: :schedule_users
 end

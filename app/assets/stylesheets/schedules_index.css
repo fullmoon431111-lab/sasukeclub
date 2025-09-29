@@ -1,0 +1,105 @@
+/* 全体のベース */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 通知メッセージ */
+#notice {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* リンク全般 */
+a {
+  color: #1976d2;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #0d47a1;
+}
+
+/* 見出し */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+/* テーブル全体 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* テーブルヘッダー */
+table th {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+}
+
+/* テーブルボディ */
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* テーブル内のリンクボタン風 */
+table a {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #1976d2;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+table a:hover {
+  background-color: #1565c0;
+}
+
+/* 日程追加リンク */
+a[href$="new_schedule"] {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: #43a047;
+  color: #fff;
+  margin-top: 10px;
+}
+
+a[href$="new_schedule"]:hover {
+  background-color: #388e3c;
+}
+
+.schedule-title{
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #34495e;
+  margin-bottom: 12px;
+}
+
+.schedule-time{
+  font-size: 1em;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+/* month_calendar ヘルパーで生成されるdivは直接指定せず、リンクだけにCSSを適用 */

@@ -1,31 +1,72 @@
-<h3>活動内容</h3>
+<%= stylesheet_link_tag "sasukes_index", :media => "all" %>
+
+
+<% if user_signed_in? %>
+  <%= link_to "カレンダーへ", schedules_path %>
+   <% if current_user.admin? %>
+     <%= link_to "ユーザー一覧へ", users_path %>
+   <% end %>
+<% end %>
+<br>
+<%= image_tag "member.jpg", alt: "東大SASUKEサークル集合写真", class: "member" %>
+
+
+<h2>サークル概要</h2>
+
+<div class="about-club">
+  <p>東大SASUKEサークルは、SASUKE好きの仲間が集まって2022年に設立されたサークルです。
+  <span class="highlight">本物のSASUKEに見立てたエリアを実際に体験</span>してみたり、己の肉体の限界に挑戦することが出来ます!
+  2023年の第41回大会には<span class="highlight">当サークルからSASUKEの出場者も出ました!</span>
+  <br>現在は<span class="highlight">1st stageクリア者の輩出</span>を目指して、日々活動を行っています!
+  SASUKEを見るのが好きな方から、トレーニングをしてみたい方、出場を本格的に目指す方まで様々な方をお待ちしております！</p>
+</div>
+
+<h4>チーム構成</h4>
+<div class="team-composition">
+  <div class="team-card">
+    <h5>① トレーニングチーム</h5>
+    <p>一番在籍している人が多いチームです。普段は日比谷公園の鉄棒や遊具、石段などを使ってトレーニングを行っています。</p>
+  </div>
+
+  <div class="team-card">
+    <h5>② SASUKEチーム</h5>
+    <p>SASUKE観戦やクイズ大会など、SASUKE好きにおすすめのチームです。</p>
+  </div>
+
+  <div class="team-card">
+    <h5>③ 出場チーム</h5>
+    <p>大会出場を目指して本格的なトレーニングを行うチームです。</p>
+  </div>
+</div>
+
+
+<h2>活動内容</h2>
+
 <% if user_signed_in? %>
   <% if current_user.admin? %>
     <%= link_to "新規投稿へ", new_sasuke_path %>
   <% end %>
 <% end %>
-<div class="activities-container">
+
+<div class="activity-container">
   <% @sasukes.each do |t| %>
-    <div class="activity">
-      <%= t.user.email %>
-      <%= t.title %>
-      <% if t.image.attached? %>
-          <%= image_tag t.image, size: '250x200'%>
-      <% end %>
-      <%= t.about %>
-      <%= link_to "詳細へ", sasuke_path(t.id) %>
-      <% if user_signed_in? %>
-        <% if current_user.admin? %>
-          <%= link_to "編集する", edit_sasuke_path(t.id) %>
-          <%= button_to "削除する", sasuke_path(t.id), method: :delete %>
+    <div class="activity-item">
+      <div class="activity-title">
+        <%= t.title %>
+      </div>
+      <div class="activity-detail">
+        <%= t.about %>
+      </div>
+      <div class="activity-img">
+        <% if t.image.attached? %>
+          <%= image_tag t.image %>
         <% end %>
+      </div>
+        <%= link_to "詳細へ", sasuke_path(t) %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "編集する", edit_sasuke_path(t.id) %>
+        <%= button_to "削除する", sasuke_path(t.id), method: :delete %>
       <% end %>
     </div>
   <% end %>
 </div>
-
- <% if user_signed_in? %>
-   <% if current_user.admin? %>
-     <%= link_to "秘密のページへ", users_path %>
-   <% end %>
- <% end %>

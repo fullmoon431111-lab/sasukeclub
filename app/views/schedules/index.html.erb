@@ -1,6 +1,12 @@
+<%= stylesheet_link_tag "schedules_index", media: "all" %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>活動日程</h1>
+<% if user_signed_in? %>
+  <%= link_to "トップページへ", sasukes_path %>
+<% end %>
+
+<h2>合同トレーニング日程</h2>
 
 <table>
   <thead>
@@ -10,30 +16,51 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.title %></td>
-        <td><%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to 'Show', schedule %></td>
-        <td><%= link_to 'Edit', edit_schedule_path(schedule.id) %></td>
-        <td><%= link_to 'Destroy',schedule_path(schedule.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="schedule-title"><%= schedule.title %></td>
+        <td class="schedule-time"><%= schedule.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= link_to '詳細', schedule_path(schedule) %></td>
+
+        <% if user_signed_in? %>
+          <% if schedule.users.include?(current_user) %>
+            <td>
+              <%= button_to "参加キャンセル", leave_schedule_path(schedule), method: :delete %>
+            </td>
+          <% else %>
+            <td>
+              <%= button_to "参加する", join_schedule_path(schedule), method: :post %>
+            </td>
+          <% end %>
+        <% end %>
+　　　　 <% if user_signed_in? && current_user.admin? %>
+          <td><%= link_to '編集', edit_schedule_path(schedule.id) %></td>
+          <td><%= link_to '削除', schedule_path(schedule.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
+
   </tbody>
 </table>
 
-<br>
-
-<%= link_to '日程を追加', new_schedule_path %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to '日程を追加', new_schedule_path %>
+<% end %>
 
 <%= month_calendar events: @schedules do |date, schedules| %>
   <%= date.day %>
-
   <% schedules.each do |schedule| %>
-    <div>
-      <%= link_to schedule.title, schedule %>
-    </div>
+    <%= link_to schedule.title, schedule_path(schedule) %>
+    <% if user_signed_in? %>
+      <% if schedule.users.include?(current_user) %>
+        <%= button_to "参加キャンセル", leave_schedule_path(schedule), method: :delete, class: "small-btn" %>
+      <% else %>
+        <%= button_to "参加する", join_schedule_path(schedule), method: :post, class: "small-btn" %>
+      <% end %>
+    <% end %>
+    <br>
   <% end %>
 <% end %>
+
+

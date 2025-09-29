@@ -1,11 +1,23 @@
+<%= stylesheet_link_tag "sasukes_show", :media => "all" %>
+
 <h3>活動内容詳細</h3>
 <div class="content">
+  <div class="activity-title">
+    <%= @content.title %>
+  </div>
+
   <p><%= @content.about %></p>
-  <p><%= @content.created_at %></p>
-  <% if user_signed_in? %>
-    <% if current_user.admin? %>
-      <%= link_to "編集する", edit_sasuke_path(@content.id) %>
+
+  <div class="activity-img">
+    <% if @content.image.attached? %>
+      <%= image_tag @content.image %>
     <% end %>
+  </div>
+
+  <p>作成日時: <%= l @content.created_at, format: :long %></p>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "編集する", edit_sasuke_path(@content) %>
   <% end %>
 </div>
 

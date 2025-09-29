@@ -1,0 +1,179 @@
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #d0e6f7, #f7e6f0);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/waves.png');
+  background-repeat: repeat;
+}
+
+/* 見出し */
+h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #2c3e50;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.member{
+  width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
+.about-club{
+  font-size: 1em;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.about-club .highlight {
+  font-weight: bold;     /* 太字 */
+  color: #b30000;        /* 濃い赤に変更 */
+  background: #fff0f0;   /* 薄い赤背景を付ける場合 */
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+h4 {
+  font-size: 2em;       /* 既存より大きめに調整 */
+  color: #555;       /* 赤系でアクセントに */
+  margin-bottom: 20px;  /* 下に余白を追加して見やすく */
+  font-weight: 700;     /* 太めにして強調 */
+}
+
+
+.team-composition {
+  display: grid;
+  gap: 20px;               /* ボックス間の余白 */
+  margin-bottom: 30px;
+}
+
+.team-composition .team-card {
+  background: #fff;        /* 白背景で見やすく */
+  border-left: 6px solid #b30000; /* 赤ラインをアクセントに */
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.team-composition .team-card:hover {
+  transform: translateY(-4px);
+}
+
+.team-composition h5 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #b30000;        /* チーム名を赤で強調 */
+  font-size: 1.1em;
+}
+
+.team-composition p {
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+
+/* 活動カード */
+.activity-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgb(211, 211, 235);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  max-width: 700px;   /* ← 固定幅から最大幅に変更 */
+  width: 90%;         /* ← 画面幅に応じて可変 */
+  margin: 0 auto;
+  box-sizing: border-box; /* パディング込みで幅計算 */
+}
+
+.activity-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;          /* 親幅いっぱいに合わせる */
+  box-sizing: border-box;/* パディング込みで幅計算 */
+}
+
+
+
+.activity-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+
+
+.activity:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+.activity-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #34495e;
+  margin-bottom: 12px;
+}
+
+.activity-about {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.activity-img {
+  text-align: center;  /* ラッパーの中身を中央揃え */
+  margin: 10px auto;
+}
+
+.activity-img img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 80%;     /* 親幅の最大90%まで拡大 */
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+
+
+/* ボタン風リンク */
+.details-link, .edit-link, .delete-button {
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.details-link { background-color: #1abc9c; }
+.details-link:hover { background-color: #16a085; }
+
+.edit-link { background-color: #3498db; }
+.edit-link:hover { background-color: #2980b9; }
+
+.delete-button { background-color: #e74c3c; border: none; cursor: pointer; }
+.delete-button:hover { background-color: #c0392b; }
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .activities-container { flex-direction: column; align-items: center; }
+}
+
+
+
