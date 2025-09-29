@@ -58,7 +58,7 @@ gem "devise"
 gem 'hirb'
 gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
-gem 'simple_calendar', '~> 2.0'
+gem 'simple_calendar', '~> 3.1'
 gem 'sassc-rails'
 
 group :test do
